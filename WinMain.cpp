@@ -2,6 +2,7 @@
 #include <Windows.h>
 #include <tchar.h>
 #include "Direct3D.h"
+#include "Quad.h"
 using namespace Direct3D;
 
 //プロトタイプ宣言
@@ -61,6 +62,10 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, 
 	//Direct3D初期化
 	Direct3D::Initialize(winW, winH, hWnd);
 
+	Quad* q;
+	q = new Quad();
+	q->Initialize();
+
 	//メッセージループ（何か起きるのを待つ）
 	MSG msg;
 	ZeroMemory(&msg, sizeof(msg));
@@ -78,6 +83,8 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, 
 		{
 			//ゲームの処理
 			Direct3D::BeginDraw();
+
+			q->Draw();
 
 			//描画処理
 			Direct3D::EndDraw();
