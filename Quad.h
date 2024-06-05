@@ -19,8 +19,8 @@ class Quad
 public:
 	Quad();
 	~Quad();
-	void Initialize();
-	void Draw();
+	HRESULT Initialize();
+	void Draw(XMMATRIX& worldMatrix);
 	void Release();
 };
 

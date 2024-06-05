@@ -3,6 +3,7 @@
 #include <tchar.h>
 #include "Direct3D.h"
 #include "Quad.h"
+#include "Camera.h"
 using namespace Direct3D;
 
 //プロトタイプ宣言
@@ -60,11 +61,17 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, 
 	ShowWindow(hWnd, nCmdShow);
 
 	//Direct3D初期化
-	Direct3D::Initialize(winW, winH, hWnd);
+	HRESULT hr = Direct3D::Initialize(winW, winH, hWnd);
+	if (FAILED(hr)) {
+		return 0;
+	}
 
 	Quad* q;
 	q = new Quad();
-	q->Initialize();
+	hr = q->Initialize();
+	if (FAILED(hr)) {
+		return 0;
+	}
 
 	//メッセージループ（何か起きるのを待つ）
 	MSG msg;
@@ -81,16 +88,30 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, 
 		//メッセージなし
 		else
 		{
+			//カメラを更新
+			Camera::Update();
+
 			//ゲームの処理
 			Direct3D::BeginDraw();
 
-			q->Draw();
+			static float rot = 0;
+			rot += 0.5;
+			XMMATRIX rmat = XMMatrixRotationY(XMConvertToRadians(rot));
+			static float factor = 0.0;
+			factor += 0.01;
+			//float scale = 1.5 + sin(factor);
+			//XMMATRIX smat = XMMatrixScaling(scale, scale, scale);
+			XMMATRIX tmat = XMMatrixTranslation(3.0 * sin(factor), 0, 0);
+			//XMMATRIX mat = smat * rmat * tmat;
+			XMMATRIX mat = XMMatrixIdentity();
+			q->Draw(mat);
 
 			//描画処理
 			Direct3D::EndDraw();
 
 		}
 	}
+	SAFE_DELETE(q);
 	Direct3D::Release();
 	return 0;
 }
