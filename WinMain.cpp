@@ -104,6 +104,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, 
 			XMMATRIX tmat = XMMatrixTranslation(3.0 * sin(factor), 0, 0);
 			//XMMATRIX mat = smat * rmat * tmat;
 			XMMATRIX mat = XMMatrixIdentity();
+			mat = rmat * tmat;
 			q->Draw(mat);
 
 			//•`‰æˆ—

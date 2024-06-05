@@ -3,6 +3,11 @@
 #include <DirectXTex.h>
 using namespace DirectX;
 
+Texture::Texture()
+	:pSampler_(nullptr), pSRV_(nullptr)
+{
+}
+
 HRESULT Texture::Load(string fileName)
 {
 	TexMetadata metadata; //‰æ‘œ‚Ì•t‘®î•ñ
@@ -40,4 +45,6 @@ HRESULT Texture::Load(string fileName)
 
 void Texture::Release()
 {
+	SAFE_RELEASE(pSampler_);
+	SAFE_RELEASE(pSRV_);
 }

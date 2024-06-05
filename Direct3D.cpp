@@ -1,5 +1,6 @@
 #include <d3dcompiler.h>
 #include "Direct3D.h"
+#include "DirectXMath.h"
 
 //変数
 namespace Direct3D
@@ -71,7 +72,7 @@ HRESULT Direct3D::Initialize(int winW, int winH, HWND hWnd)
 	//レンダーターゲットビューを作成
 	hr = pDevice->CreateRenderTargetView(pBackBuffer, NULL, &pRenderTargetView);
 	if (FAILED(hr)) {
-		MessageBox(NULL, L"頂点バッファの作成に失敗しました", NULL, MB_OK);
+		MessageBox(NULL, L"レンダ―ターゲットビューの作成に失敗しました", NULL, MB_OK);
 		return hr;
 	}
 
@@ -108,19 +109,20 @@ HRESULT Direct3D::InitShader()
 	assert(pCompileVS != nullptr);
 	hr = pDevice->CreateVertexShader(pCompileVS->GetBufferPointer(), pCompileVS->GetBufferSize(), NULL, &pVertexShader);
 	if (FAILED(hr)) {
-		MessageBox(NULL, L"頂点バッファの作成に失敗しました", NULL, MB_OK);
+		MessageBox(NULL, L"頂点シェーダの作成に失敗しました", NULL, MB_OK);
 		return hr;
 	}
 	
 	//頂点インプットレイアウト
 	D3D11_INPUT_ELEMENT_DESC layout[] = {
 		{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0,  D3D11_INPUT_PER_VERTEX_DATA, 0 },	//位置
+		{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, sizeof(DirectX::XMVECTOR) , D3D11_INPUT_PER_VERTEX_DATA, 0 },//UV座標
 	};
-	hr = pDevice->CreateInputLayout(layout, 1, pCompileVS->GetBufferPointer(), pCompileVS->GetBufferSize(), &pVertexLayout);
+	hr = pDevice->CreateInputLayout(layout, 2, pCompileVS->GetBufferPointer(), pCompileVS->GetBufferSize(), &pVertexLayout);
 	
 	pCompileVS->Release();
 	if (FAILED(hr)) {
-		MessageBox(NULL, L"頂点バッファの作成に失敗しました", NULL, MB_OK);
+		MessageBox(NULL, L"頂点インプットレイアウトの作成に失敗しました", NULL, MB_OK);
 		return hr;
 	}
 
@@ -131,7 +133,7 @@ HRESULT Direct3D::InitShader()
 	hr = pDevice->CreatePixelShader(pCompilePS->GetBufferPointer(), pCompilePS->GetBufferSize(), NULL, &pPixelShader);
 	pCompilePS->Release();
 	if (FAILED(hr)) {
-		MessageBox(NULL, L"頂点バッファの作成に失敗しました", NULL, MB_OK);
+		MessageBox(NULL, L"ピクセルシェーダの作成に失敗しました", NULL, MB_OK);
 		return hr;
 	}
 
@@ -142,7 +144,7 @@ HRESULT Direct3D::InitShader()
 	rdc.FrontCounterClockwise = FALSE; //反時計回りを表にするかどうか(がfalseなので時計回りが表)
 	hr = pDevice->CreateRasterizerState(&rdc, &pRasterizerState);
 	if (FAILED(hr)) {
-		MessageBox(NULL, L"頂点バッファの作成に失敗しました", NULL, MB_OK);
+		MessageBox(NULL, L"ラスタライザの作成に失敗しました", NULL, MB_OK);
 		return hr;
 	}
 
