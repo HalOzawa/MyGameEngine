@@ -23,7 +23,7 @@ void Camera::Initialize()
 void Camera::Update()
 {
 	//ビュー行列の作成
-	viewMatrix_ = XMMatrixLookAtLH(position_, target_, XMVectorSet(0, 1, 0, 0));
+	viewMatrix_ = XMMatrixPerspectiveFovLH(XM_PIDIV4, (FLOAT)800 / (FLOAT)600, 0.1f, 100.0f);
 }
 
 //位置を設定

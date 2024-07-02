@@ -1,6 +1,14 @@
 #pragma once
 #include <d3d11.h>
 #include <assert.h>
+
+enum SHADER_TYPE
+{
+	SHADER_2D,
+	SHADER_3D,
+	SHAADER_MAX
+};
+
 #define SAFE_DELETE(p) if(p != nullptr){ delete p; p = nullptr;}
 #define SAFE_RELEASE(p) if(p != nullptr){ p->Release(); p = nullptr;}
 
@@ -18,6 +26,10 @@ namespace Direct3D
 
 	//シェーダー準備
 	HRESULT InitShader();
+	HRESULT InitShader3D(); //simple3D.hlslのための初期化
+	HRESULT InitShader2D(); //simple2D.hlslのための初期化
+
+	void SetShader(SHADER_TYPE type);
 
 	//描画開始
 	void BeginDraw();
