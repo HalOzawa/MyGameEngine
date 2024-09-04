@@ -33,3 +33,9 @@ XMMATRIX Transform::GetWorldMatrix()
 {
     return matScale_ * matRotate_ * matTranslate_;
 }
+
+XMMATRIX Transform::GetNormalMatrix()
+{
+    //平行移動は無視、回転はかける、スケールは元に戻す
+    return (matRotate_ * XMMatrixInverse(nullptr, matScale_));
+}

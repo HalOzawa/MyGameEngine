@@ -2,11 +2,12 @@
 #include <Windows.h>
 #include "Direct3D.h"
 
-//#include "Quad.h"
+#include "Quad.h"
 #include "Camera.h"
 //#include "Sprite.h"
 #include "Transform.h"
-#include "Dice.h"
+//#include "Dice.h"
+#include "FBX.h"
 
 using namespace Direct3D;
 
@@ -41,7 +42,7 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, 
 
 	//ウィンドウサイズの計算
 	//(表示領域をWINDOW_WIDTHxWINDOW_HEIGHTに指定するための計算)
-	RECT winRect = { 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT };
+	RECT winRect = { 0, 0, Direct3D::WINDOW_WIDTH, Direct3D::WINDOW_HEIGHT };
 	AdjustWindowRect(&winRect, WS_OVERLAPPEDWINDOW, FALSE);
 	int winW = winRect.right - winRect.left;     //ウィンドウ幅
 	int winH = winRect.bottom - winRect.top;     //ウィンドウ高さ
@@ -70,13 +71,16 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, 
 		return 0;
 	}
 
-	//Quad* q;
-	//q = new Quad();
-	Dice* d;
-	d = new Dice();
+	Camera::Initialize();
+
+	FBX fbx;
+	fbx.Load("Assets\\GreenBox.fbx");
+
+	//Quad* q = new Quad();
+	//Dice* d = new Dice();
 
 	//hr = q->Initialize();
-	hr = d->Initialize();
+	//hr = d->Initialize();
 	//std::string textureData("Assets\\dice.png");
 	//Sprite* pSprite;
 	//pSprite = new Sprite();
@@ -110,12 +114,14 @@ int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInst, LPSTR lpCmdLine, 
 			//XMMATRIX mat = XMMatrixIdentity();
 			//XMMATRIX mat = XMMatrixScaling(1 / 2.0f, 1 / 2.0f, 1.0f);
 			Transform trs;
-			static int rot = 0;
-			//trs.scale_ = {0.5, 0.5, 1};
-			trs.rotate_.z = rot;
+			fbx.Draw(trs);
+			static float rot = 0;
+			//trs.scale_ = {0.5, 0.5, 0.5};
+			trs.rotate_.y = rot;
 			rot = rot + 0.1;
 
-			d->Draw(trs);
+			//q->Draw(trs);
+			//d->Draw(trs);
 			//pSprite->Draw(trs);
 
 			//1度ずつ回転するための変数
