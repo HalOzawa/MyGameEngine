@@ -13,74 +13,71 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="ソース ファイル\SHADER">
-      <UniqueIdentifier>{3babb954-7c27-4c1d-badb-ccb3d29ea072}</UniqueIdentifier>
+    <Filter Include="ソース ファイル\Engine">
+      <UniqueIdentifier>{9b11ff41-c5d9-4db6-9a8c-644f96fb5f89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Engine\SHADER">
+      <UniqueIdentifier>{649ba09d-b2c1-4f50-bed9-390c21574ae2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Engine\Transform.cpp">
+      <Filter>ソース ファイル\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Camera.cpp">
+      <Filter>ソース ファイル\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Direct3D.cpp">
+      <Filter>ソース ファイル\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\FBX.cpp">
+      <Filter>ソース ファイル\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Quad.cpp">
+      <Filter>ソース ファイル\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Sprite.cpp">
+      <Filter>ソース ファイル\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Texture.cpp">
+      <Filter>ソース ファイル\Engine</Filter>
+    </ClCompile>
     <ClCompile Include="WinMain.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Direct3D.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Quad.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Sprite.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Dice.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Transform.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="FBX.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Direct3D.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Engine\Camera.h">
+      <Filter>ソース ファイル\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Quad.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Engine\Direct3D.h">
+      <Filter>ソース ファイル\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Engine\FBX.h">
+      <Filter>ソース ファイル\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Engine\Quad.h">
+      <Filter>ソース ファイル\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Sprite.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Engine\Sprite.h">
+      <Filter>ソース ファイル\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Dice.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Engine\Texture.h">
+      <Filter>ソース ファイル\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="Transform.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="FBX.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="Engine\Transform.h">
+      <Filter>ソース ファイル\Engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="Simple2D.hlsl">
-      <Filter>ソース ファイル\SHADER</Filter>
+    <FxCompile Include="Engine\Simple2D.hlsl">
+      <Filter>ソース ファイル\Engine\SHADER</Filter>
     </FxCompile>
-    <FxCompile Include="Simple3D.hlsl">
-      <Filter>ソース ファイル\SHADER</Filter>
+    <FxCompile Include="Engine\Simple3D.hlsl">
+      <Filter>ソース ファイル\Engine\SHADER</Filter>
     </FxCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
 </Project>

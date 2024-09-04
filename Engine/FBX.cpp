@@ -64,7 +64,7 @@ void FBX::InitVertex(fbxsdk::FbxMesh* mesh)
 	//VERTEX* vertices = new VERTEX[vertexCount_];
 	std::vector<VERTEX> vertices(vertexCount_);
 	//‘Sƒ|ƒŠƒSƒ“
-	for (DWORD poly = 0; poly < polygonCount_; poly++)
+	for (DWORD poly = 0; poly < (DWORD)polygonCount_; poly++)
 	{
 		//3’¸“_•ª
 		for (int vertex = 0; vertex < 3; vertex++)
